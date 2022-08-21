@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css"/>
+    <title>Coding Quiz</title>
+</head>
+<header>
+    <div class ="head">
+        <p>
+            <a href="highscore.html" id="highscore" class="button">View high scores</a>
+        </p>
+        <p>
+            Timer: <span class="timer"></span>
+        </p>
+    </div>
+</header>
+<body>
+    <div class="container">
+      <div id ="question_container" class="hidden">
+        <div id ="question">Question</div>
+        <div id ="answer-container" class="btn-grid">
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
+        </div>
+      </div>
+    </div>
+    <h1>
+        Coding Quiz Challenge
+    </h1>
+    <p>
+        Today we will be doing a short quiz on a few concepts that we have learnt.
+    </p>
+    <h2>Rules</h2>
+    <ul>
+        <li>You have 60 seconds</li>
+        <li>For every right answer, you get 1 point</li>
+        <li>For every wrong answer, you get -1 point, and lose 5 seconds</li>
+        <li>There are 5 questions in total</li>
+    </ul>
+    <a href="./game.html" class="button">Play</a>
+    <button class="startbutton">Start Quiz</button>
+<script src="./assets/script.js"></script>
+</body>
+</html>
