@@ -11,7 +11,7 @@ var bodyEl = document.querySelector("body");
 var rootEl = document.querySelector("root");
 
 var score = 0;
-var timerCount = 1;
+var timerCount = 100;
 var endTimerCount = 10;
 timerEl.textContent = timerCount;
 
@@ -99,6 +99,7 @@ function endGame(){
         endGameScreen.textContent = "Game Over!";
         endGameScreen.setAttribute('style','font-size: 10rem;');
         bodyEl.appendChild(endGameScreen);
+
     }
  })
     //window.location.href = "./highscore.html";
@@ -110,9 +111,10 @@ function getNewQuestion(){
     //currentQuestion = questions[i]
     currentQuestion = availableQuestions[questionIndex];
     questionEl.innerText = currentQuestion['question'];
+    // for (var i = 0; i < currentQuestion['answers'])
 }
 
-   // answerEl.innerText = currentQuestion['answers'];
+//answerEl.innerText = currentQuestion['answers'];
 //    questions.answers.forEach(answers => {
 //     const button = document.createElement('button');
 //     button.innerText = answers.text;
