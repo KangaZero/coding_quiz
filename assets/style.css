@@ -33,3 +33,30 @@ a{
 .hidden{
     display: none;
 }
+
+
+/*quiz*/
+
+#answer-container {
+    display: flex;
+    flex-flow: wrap column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100vh;
+    height: 100vh;
+    min-height: 500px;
+    min-width: 500px;
+}
+
+.btn {
+    width: 500px;
+    height: 100px;
+    background-color: darkcyan;
+}
+
+.options {
+    padding: 10px;
+    order: 3;
+ }
+  

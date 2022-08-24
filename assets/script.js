@@ -1,53 +1,62 @@
 var startButton = document.querySelector(".startbutton");
 var timerEl = document.querySelector(".timer");
+var scoreBoardEl= document.querySelector('#scoreboard');
+var scoreEl = document.querySelector('.score');
 var quizPage = document.querySelector("#quiz_container");
 var questionEl = document.querySelector("#question");
 var answerEl = document.querySelector("btn");
 var startPage = document.querySelector("#start_container");
+var resultEl = document.querySelector(".result");
+var bodyEl = document.querySelector("body");
+var rootEl = document.querySelector("root");
 
 var score = 0;
-var timerCount = 60;
+var timerCount = 1;
+var endTimerCount = 10;
 timerEl.textContent = timerCount;
 
 var questions = [
-    { question: "Test question No.1",
+    { question: "What is 1 + 1?",
       answers: [
-        {text: 'answer', correct: true},
-        {text: 'false', correct: false},
-        {text: 'answer', correct: true},
-        {text: 'false', correct: false},
-      ]
-    }
-    ,{ question: "Test question No.2",
+        {option: "2", answer: true},
+        {option: "3", answer: false},
+        {option: "4", answer: false},
+        {option: "8", answer: false},
+        ]
+    },
+    { question: "Test question No.2",
     answers: [
-      {text: 'answer', correct: true},
-      {text: 'false', correct: false},
-      {text: 'answer', correct: true},
-      {text: 'false', correct: false},
-    ]
-  },{ question: "Test question No.2",
+        {option: "2", answer: true},
+        {option: "3", answer: false},
+        {option: "4", answer: false},
+        {option: "8", answer: false},
+        ]
+    },
+    { question: "Test question No.3",
   answers: [
-    {text: 'answer', correct: true},
-    {text: 'false', correct: false},
-    {text: 'answer', correct: true},
-    {text: 'false', correct: false},
-  ]
-},{ question: "Test question No.2",
-answers: [
-  {text: 'answer', correct: true},
-  {text: 'false', correct: false},
-  {text: 'answer', correct: true},
-  {text: 'false', correct: false},
-]
-},{ question: "Test question No.2",
-answers: [
-  {text: 'answer', correct: true},
-  {text: 'false', correct: false},
-  {text: 'answer', correct: true},
-  {text: 'false', correct: false},
-]
-}
-]
+        {option: "2", answer: true},
+        {option: "3", answer: false},
+        {option: "4", answer: false},
+        {option: "8", answer: false},
+        ]
+    },
+    { question: "Test question No.4",
+    answers: [
+        {option: "2", answer: true},
+        {option: "3", answer: false},
+        {option: "4", answer: false},
+        {option: "8", answer: false},
+        ]
+    },
+    { question: "Test question No.5",
+    answers: [
+        {option: "2", answer: true},
+        {option: "3", answer: false},
+        {option: "4", answer: false},
+        {option: "8", answer: false},
+        ]
+    }
+                ]
 
 var questionCounter = 0;
 //currentQuestion = questions[questionIndex]
@@ -58,12 +67,13 @@ var availableQuestions = [];
 function startGame(){
     questionCounter = 0;
     score = 0;
+    scoreEl.textContent = score;
     availableQuestions = questions;
     startPage.classList.add('hidden');
     quizPage.classList.remove('hidden');
-    //create function
+    scoreBoardEl.classList.remove('hidden');
     getNewQuestion();
-    //startTimer();
+    startTimer();
 }
 
 function startTimer(){
@@ -72,15 +82,26 @@ var timer = setInterval(function(){
     timerEl.textContent = timerCount;
     if (timerCount == 0){
         clearInterval(timer);
-        //create endgame function
         endGame();
     }
-
 }, 1000)
 }
 
 function endGame(){
-    window.location.href = "./highscore.html";
+    bodyEl.classList.add("hide");
+    timerEl.textContent = endTimerCount
+ var timer = setInterval(function(){
+    endTimerCount --;
+    if (endTimerCount == 0){
+        clearInterval(timer);
+        quizPage.classList.add('hidden');
+        var endGameScreen = document.createElement("h1");
+        endGameScreen.textContent = "Game Over!";
+        endGameScreen.setAttribute('style','font-size: 10rem;');
+        bodyEl.appendChild(endGameScreen);
+    }
+ })
+    //window.location.href = "./highscore.html";
 }
 function getNewQuestion(){
     
@@ -88,17 +109,45 @@ function getNewQuestion(){
     var questionIndex = Math.floor(Math.random() * availableQuestions.length);
     //currentQuestion = questions[i]
     currentQuestion = availableQuestions[questionIndex];
-    questionEl.innerText = currentQuestion;
-
+    questionEl.innerText = currentQuestion['question'];
 }
 
-function wrongAnswer(){}
+   // answerEl.innerText = currentQuestion['answers'];
+//    questions.answers.forEach(answers => {
+//     const button = document.createElement('button');
+//     button.innerText = answers.text;
+//     button.classList.add('btn');
+//     if (answers.correct){
+//         button.dataset.correct = answers.correct
+//     }
+//     button.addEventListener('click', selectAnswer)
+//     answerEl.appendChild(button);
 
-function rightAnswer(){}
+
+
+function selectAnswer(event){
+    var selected = event.target;
+    for (var i = 0; i < 5; i++ ){
+    if (selected == questions.text.includes('correct = true')){
+        score++;
+        }
+    else { 
+        score--;
+        timerCount-= 5;
+    }
+    getNewQuestion();   
+}
+    // var correct = selected.dataset.correct;
+    // setStatusClass(document.body, correct);
+    
+}
 
 function init(){
 
 }
+
+//currently causing error
+//answerEl.addEventListener('click', selectAnswer);
 
 startButton.addEventListener("click", startGame);
 

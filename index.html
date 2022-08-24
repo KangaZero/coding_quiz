@@ -15,17 +15,21 @@
         <p>
             Timer: <span class="timer"></span>
         </p>
+        <p id="scoreboard" class="hidden">
+            Score: <span class="score"></span>
+        </p>
     </div>
 </header>
 <body>
     <div id="quiz_container" class="hidden">
         <div id ="question">Question</div>
-        <div id ="answer-container" class="btn-grid">
-            <button class="btn"></button>
-            <button class="btn"></button>
-            <button class="btn"></button>
-            <button class="btn"></button>
+        <div id ="answer-container" class="options">
+            <button class="btn" id="True"></button>
+            <button class="btn" id="False"></button>
+            <button class="btn" id="False"></button>
+            <button class="btn" id="False"></button>
         </div>
+        <p class="result"></p>
     </div>
 <div id="start_container">
     <h1>
@@ -41,9 +45,10 @@
         <li>For every wrong answer, you get -1 point, and lose 5 seconds</li>
         <li>There are 5 questions in total</li>
     </ul>
-    <a href="./game.html" class="button">Play</a>
     <button class="startbutton">Start Quiz</button>
 </div>
+
+<!-- <script src="./test.js"></script> -->
 <script src="./assets/script.js"></script>
 </body>
 </html>
