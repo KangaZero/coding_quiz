@@ -4,7 +4,7 @@ var scoreBoardEl= document.querySelector('#scoreboard');
 var scoreEl = document.querySelector('.score');
 var quizPage = document.querySelector("#quiz_container");
 var questionEl = document.querySelector("#question");
-var answerEl = document.querySelector("btn");
+var answerEl = document.querySelector("#answer-container");
 var startPage = document.querySelector("#start_container");
 var resultEl = document.querySelector(".result");
 var bodyEl = document.querySelector("body");
@@ -107,11 +107,22 @@ function endGame(){
 function getNewQuestion(){
     
     questionCounter ++;
+    if (questionCounter >= 5){
+        //endGame();
+    }
     var questionIndex = Math.floor(Math.random() * availableQuestions.length);
     //currentQuestion = questions[i]
     currentQuestion = availableQuestions[questionIndex];
     questionEl.innerText = currentQuestion['question'];
-    // for (var i = 0; i < currentQuestion['answers'])
+    answerEl.innerText = ' ';
+     for (var i = 0; i < currentQuestion.answers.length; i++){
+        var button = document.createElement('button');
+            button.innerText = currentQuestion.answers[i].answer;
+            button.classList.add('btn'); 
+            button.setAttribute('value', currentQuestion.answers[i].answer);
+            button.addEventListener('click', selectAnswer)
+            answerEl.appendChild(button); 
+     }
 }
 
 //answerEl.innerText = currentQuestion['answers'];
@@ -128,21 +139,24 @@ function getNewQuestion(){
 
 
 function selectAnswer(event){
-    var selected = event.target;
-    for (var i = 0; i < 5; i++ ){
-    if (selected == questions.text.includes('correct = true')){
+    var selected = event.target.value;
+    console.log("selected = ",selected); 
+
+    if (selected == true){
         score++;
         }
     else { 
         score--;
         timerCount-= 5;
     }
+    scoreEl.textContent = score;
     getNewQuestion();   
 }
     // var correct = selected.dataset.correct;
     // setStatusClass(document.body, correct);
     
-}
+
+
 
 function init(){
 
