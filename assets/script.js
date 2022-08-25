@@ -11,7 +11,7 @@ var resultEl = document.querySelector(".result");
 var bodyEl = document.querySelector("body");
 var rootEl = document.querySelector("root");
 var saveForm = document.querySelector(".save")
-var nameInput = document.querySelector("#name");
+var nameInput = document.querySelector("#initials");
 var saveButton = document.querySelector("#save-score")
 
 var score = 0;
@@ -71,7 +71,6 @@ function startGame(){
     questionCounter = 0;
     score = 0;
     scoreEl.textContent = score;
-    questionCounterEl.textContent = questionCounter;
     availableQuestions = questions;
     startPage.classList.add('hidden');
     quizPage.classList.remove('hidden');
@@ -140,16 +139,17 @@ function selectAnswer(event){
 function save (){   
    saveForm.classList.remove("hidden");
    
-   saveForm.addEventListener("submit", function(event){
-    event.preventDefault();
-   }) 
-   saveButton.addEventListener('submit', function(event){
+//    saveForm.addEventListener("submit", function(event){
+//     event.preventDefault();
+//    }) 
+   saveForm.addEventListener('submit', function(event){
         event.preventDefault();
+
         var savedData = {
-            //nameInput.value not recognised 
             initials: nameInput.value,
             points: score,
         }
+
         localStorage.setItem("score", JSON.stringify(savedData)); 
         nameInput.value = " ";
     })
@@ -183,10 +183,6 @@ function save (){
         viewHighScore();
 
  }
- 
-function init(){
-
-}
 
 function replay(){
     var replayBtn = document.createElement('button');

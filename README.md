@@ -41,6 +41,7 @@ If the right option is picked, they will be rewarded with 1 point. Thus, the use
 - Additional methods learnt outside of class such linking into a new page, or reloading a page using Javascript
 - Some practice on setInterval and clearInterval
 - Debugging practice using chrome's dev tools
+- A better understanding of JSON, and localStorage
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -50,6 +51,7 @@ If the right option is picked, they will be rewarded with 1 point. Thus, the use
 - [x] Start Page
 - [x] Quiz Page
 - [x] HighScore Page
+- [x] Save Initials and Score
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -84,12 +86,17 @@ Here are some of the resources used as reference to build this personal portfoli
 * [Window.location](https://developer.mozilla.org/en-US/docs/Web/API/Window/location)
 * [location.reload](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload.)
 * [createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+* [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+*[JSON](https://www.json.org/json-en.html)
 
-In addition to these links, I would like to acknowledge and credit the help I had from a tutor in a one-on-one session. They have helped me in debugging my code, and allowing the options to show the proper text, and for event.target to recognise the boolean (but as a string), allowing my quiz to work.
+
+In addition to these links, I would like to acknowledge and credit the help I had from a tutor in a one-on-one session. They have helped me in debugging my code, and allowing the options to show the proper text, and for event.target to recognise the boolean (but as a string), allowing my quiz to work. 
 
 Here are their contact details:
 - Name: Suresh Kumar
 - Email: <a href="mailto:skumar2@instructors.2u.com"> skumar2@instructors.2u.com </a>
+
+And small shout out to one of the TAs, Doug for fixing a small error for my localStorage function. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
