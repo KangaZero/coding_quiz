@@ -1,4 +1,5 @@
 var highScorePage = document.querySelector('.highscore_container');
+var backToQuiz = document.querySelector('.return');
 
 var highscoreList = document.createElement('ul');
 
@@ -7,3 +8,7 @@ var highscoreList = document.createElement('ul');
    var scoreboard = document.createElement('p');
    scoreboard.textContent = save; 
    bodyEl.appendChild(scoreboard);
+
+backToQuiz.addEventListener('click', function(){
+    window.location.href = "./index.html";  
+})

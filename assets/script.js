@@ -24,41 +24,41 @@ var questions = [
         {option: "8", answer: false},
         ]
     },
-    { question: "Test question No.2",
+    { question: "What is the best coding language?",
     answers: [
-        {option: "2", answer: true},
-        {option: "3", answer: false},
-        {option: "4", answer: false},
-        {option: "8", answer: false},
+        {option: "Javascript", answer: true},
+        {option: "C++", answer: true},
+        {option: "Ruby", answer: true},
+        {option: "Python", answer: true},
         ]
     },
-    { question: "Test question No.3",
+    { question: "What is Obama's last name?",
   answers: [
-        {option: "2", answer: true},
-        {option: "3", answer: false},
-        {option: "4", answer: false},
-        {option: "8", answer: false},
+        {option: "Terry", answer: false},
+        {option: "Yamada", answer: false},
+        {option: "Muhammad", answer: false},
+        {option: "Obama", answer: true},
         ]
     },
-    { question: "Test question No.4",
+    { question: "What's 9 + 10?",
     answers: [
-        {option: "2", answer: true},
-        {option: "3", answer: false},
-        {option: "4", answer: false},
-        {option: "8", answer: false},
+        {option: "19", answer: false},
+        {option: "21", answer: true},
+        {option: "910", answer: false},
+        {option: "nineteen", answer: false},
         ]
     },
-    { question: "Test question No.5",
+    { question: "What was the movies of all time?",
     answers: [
-        {option: "2", answer: true},
-        {option: "3", answer: false},
-        {option: "4", answer: false},
-        {option: "8", answer: false},
+        {option: "Shrek: Homecoming", answer: false},
+        {option: "Fat Albert", answer: false},
+        {option: "Morbius", answer: true},
+        {option: "The Bee Movie", answer: false},
         ]
     }
                 ]
 
-var questionCounter = 5;
+var questionCounter = 0;
 //currentQuestion = questions[questionIndex]
 var currentQuestion = [];
 //avaiableQuestion = questions
@@ -85,7 +85,6 @@ var timer = setInterval(function(){
         clearInterval(timer);
         GameOver();
     } else if (questionCounter >= 5){
-        //create function
         clearInterval(timer);
         endGame();
     }
@@ -105,12 +104,14 @@ function getNewQuestion(){
     //took from reference code
      for (var i = 0; i < currentQuestion.answers.length; i++){
         var button = document.createElement('button');
-            button.innerText = currentQuestion.answers[i].answer;
+            button.innerText = currentQuestion.answers[i].option;
             button.classList.add('btn'); 
             button.setAttribute('value', currentQuestion.answers[i].answer);
-            button.addEventListener('click', selectAnswer)
+            button.addEventListener('click', selectAnswer);
+            button.setAttribute("style", "margin: auto; position: relative; left: 50%;");
             answerEl.appendChild(button); 
      }
+    
 }
 
 //indicates whether option clicked is right or wrong //working :) finally!
@@ -120,11 +121,15 @@ function selectAnswer(event){
 
     if (selected == "true"){
         score++;
+        resultEl.textContent = "That's right!";
         }
     else { 
         score --;
         timerCount-= 5;
+        resultEl.textContent = "That's wrong!";
     }
+
+
     scoreEl.textContent = score;
     getNewQuestion();   
 }
