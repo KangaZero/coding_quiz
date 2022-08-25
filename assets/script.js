@@ -6,13 +6,13 @@ var quizPage = document.querySelector("#quiz_container");
 var questionEl = document.querySelector("#question");
 var answerEl = document.querySelector("#answer-container");
 var startPage = document.querySelector("#start_container");
+var questionCounterEl = document.querySelector(".question_counter")
 var resultEl = document.querySelector(".result");
 var bodyEl = document.querySelector("body");
 var rootEl = document.querySelector("root");
 
 var score = 0;
-var timerCount = 100;
-var endTimerCount = 10;
+var timerCount = 60;
 timerEl.textContent = timerCount;
 
 var questions = [
@@ -58,7 +58,7 @@ var questions = [
     }
                 ]
 
-var questionCounter = 0;
+var questionCounter = 5;
 //currentQuestion = questions[questionIndex]
 var currentQuestion = [];
 //avaiableQuestion = questions
@@ -68,6 +68,7 @@ function startGame(){
     questionCounter = 0;
     score = 0;
     scoreEl.textContent = score;
+    questionCounterEl.textContent = questionCounter;
     availableQuestions = questions;
     startPage.classList.add('hidden');
     quizPage.classList.remove('hidden');
@@ -82,39 +83,26 @@ var timer = setInterval(function(){
     timerEl.textContent = timerCount;
     if (timerCount == 0){
         clearInterval(timer);
+        GameOver();
+    } else if (questionCounter >= 5){
+        //create function
+        clearInterval(timer);
         endGame();
     }
 }, 1000)
 }
 
-function endGame(){
-    bodyEl.classList.add("hide");
-    timerEl.textContent = endTimerCount
- var timer = setInterval(function(){
-    endTimerCount --;
-    if (endTimerCount == 0){
-        clearInterval(timer);
-        quizPage.classList.add('hidden');
-        var endGameScreen = document.createElement("h1");
-        endGameScreen.textContent = "Game Over!";
-        endGameScreen.setAttribute('style','font-size: 10rem;');
-        bodyEl.appendChild(endGameScreen);
 
-    }
- })
-    //window.location.href = "./highscore.html";
-}
 function getNewQuestion(){
-    
-    questionCounter ++;
-    if (questionCounter >= 5){
-        //endGame();
-    }
+    questionCounter++;
     var questionIndex = Math.floor(Math.random() * availableQuestions.length);
     //currentQuestion = questions[i]
     currentQuestion = availableQuestions[questionIndex];
+    //gets rid of current question in avaiable questions to avoid repeat.
+    availableQuestions.splice(questionIndex,1);
     questionEl.innerText = currentQuestion['question'];
     answerEl.innerText = ' ';
+    //took from reference code
      for (var i = 0; i < currentQuestion.answers.length; i++){
         var button = document.createElement('button');
             button.innerText = currentQuestion.answers[i].answer;
@@ -125,49 +113,85 @@ function getNewQuestion(){
      }
 }
 
-//answerEl.innerText = currentQuestion['answers'];
-//    questions.answers.forEach(answers => {
-//     const button = document.createElement('button');
-//     button.innerText = answers.text;
-//     button.classList.add('btn');
-//     if (answers.correct){
-//         button.dataset.correct = answers.correct
-//     }
-//     button.addEventListener('click', selectAnswer)
-//     answerEl.appendChild(button);
-
-
-
+//indicates whether option clicked is right or wrong //working :) finally!
 function selectAnswer(event){
     var selected = event.target.value;
     console.log("selected = ",selected); 
 
-    if (selected == true){
+    if (selected == "true"){
         score++;
         }
     else { 
-        score--;
+        score --;
         timerCount-= 5;
     }
     scoreEl.textContent = score;
     getNewQuestion();   
 }
-    // var correct = selected.dataset.correct;
-    // setStatusClass(document.body, correct);
     
+function save (){         
+        var save = localStorage.setItem("score", score);
+}
 
 
+    
+ //Endgame functions
+    //if questionCounter == 5(eg. all questions answered), game finishes
+   function endGame (){
+    quizPage.classList.add("hidden");
+    var GoodEnd = document.createElement('h1');
+    GoodEnd.textContent = "Congratulations! You finished the quiz!";
+    GoodEnd.setAttribute('style', 'font-size: 10rem;');
+    bodyEl.appendChild(GoodEnd);
+    save();
+    replay();
+    viewHighScore();
 
+   }
+   
+   //if timer runs out == lose
+   function GameOver(){
+        quizPage.classList.add('hidden');
+        var BadEnd = document.createElement("h1");
+        BadEnd.textContent = "Game Over!";
+        BadEnd.setAttribute('style','font-size: 10rem;');
+        bodyEl.appendChild(BadEnd);
+        save();
+        replay();
+        viewHighScore()
+ }
+ 
 function init(){
 
 }
 
-//currently causing error
-//answerEl.addEventListener('click', selectAnswer);
+function replay(){
+    var replayBtn = document.createElement('button');
+    replayBtn.textContent = "Play Again";
+    replayBtn.addEventListener("click", function(){
+        //easy method
+        location.reload();
+        //errors here 
+        //  clear();
+        //  availableQuestions = [];
+        //  startGame();
+    });
+    bodyEl.appendChild(replayBtn);
+}
+
+function viewHighScore(){
+    var highScoreButton = document.createElement('button');
+    highScoreButton.textContent = "View Highscores";
+    highScoreButton.addEventListener("click", function(){
+     window.location.href = "./highscore.html";
+    }
+   )
+    bodyEl.appendChild(highScoreButton);
+}
+
+function clear (){
+bodyEl.innerHTML = " ";
+}
 
 startButton.addEventListener("click", startGame);
 
-// document.addEventListener("click", function(event){
-//     var click = event.click;
-
-// })

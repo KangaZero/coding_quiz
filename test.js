@@ -2,12 +2,14 @@ var startButton = document.querySelector(".startbutton");
 var timerEl = document.querySelector(".timer");
 var scoreEl = document.querySelector('.score');
 var quizPage = document.querySelector("#quiz_container");
+var highScorePage = document.querySelector('.highscore_container');
 var questionEl = document.querySelector("#question");
 var answerEl = document.querySelector("btn");
 var startPage = document.querySelector("#start_container");
 var resultEl = document.querySelector(".result");
 var bodyEl = document.querySelector("body");
 var rootEl = document.querySelector("root");
+var questionCounterEl = document.querySelector(".question_counter")
 
 var score = 0;
 var timerCount = 5;
