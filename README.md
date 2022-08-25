@@ -87,7 +87,7 @@ Here are some of the resources used as reference to build this personal portfoli
 * [location.reload](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload.)
 * [createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
 * [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
-*[JSON](https://www.json.org/json-en.html)
+* [JSON](https://www.json.org/json-en.html)
 
 
 In addition to these links, I would like to acknowledge and credit the help I had from a tutor in a one-on-one session. They have helped me in debugging my code, and allowing the options to show the proper text, and for event.target to recognise the boolean (but as a string), allowing my quiz to work. 
