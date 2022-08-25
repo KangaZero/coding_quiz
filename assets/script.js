@@ -10,6 +10,9 @@ var questionCounterEl = document.querySelector(".question_counter")
 var resultEl = document.querySelector(".result");
 var bodyEl = document.querySelector("body");
 var rootEl = document.querySelector("root");
+var saveForm = document.querySelector(".save")
+var nameInput = document.querySelector("#name");
+var saveButton = document.querySelector("#save-score")
 
 var score = 0;
 var timerCount = 60;
@@ -134,10 +137,24 @@ function selectAnswer(event){
     getNewQuestion();   
 }
     
-function save (){         
-        var save = localStorage.setItem("score", score);
+function save (){   
+   saveForm.classList.remove("hidden");
+   
+   saveForm.addEventListener("submit", function(event){
+    event.preventDefault();
+   }) 
+   saveButton.addEventListener('submit', function(event){
+        event.preventDefault();
+        var savedData = {
+            //nameInput.value not recognised 
+            initials: nameInput.value,
+            points: score,
+        }
+        localStorage.setItem("score", JSON.stringify(savedData)); 
+        nameInput.value = " ";
+    })
+                  
 }
-
 
     
  //Endgame functions
@@ -163,7 +180,8 @@ function save (){
         bodyEl.appendChild(BadEnd);
         save();
         replay();
-        viewHighScore()
+        viewHighScore();
+
  }
  
 function init(){
